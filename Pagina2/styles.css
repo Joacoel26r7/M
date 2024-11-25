@@ -1,0 +1,26 @@
+html {
+    background-image: url("../media/Fuji.jpg")
+    
+}
+h1 {
+    text-align: center;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+nav {
+    border: 1px solid black;
+    background-color: rgba(red, green, blue);
+    text-align: center;
+}
+a {
+    margin: 25px;
+    padding: 0;
+}
+
+/*https://paletasdecolores.com/tag/azul-grisaceo/*/
