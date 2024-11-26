@@ -10,14 +10,14 @@ html {
 h1 {
     text-align: center;
     margin: 0;
-    color: rgb(110, 149, 177);
+    color: rgb(129, 167, 194);
 }
 
 h2 {
     text-align: center;
     margin-top: 0;
     margin-bottom: 20px;
-    color: rgb(110, 149, 177);
+    color: rgb(129, 167, 194);
 }
 
 nav {
@@ -32,9 +32,22 @@ a {
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-family: sans-serif;
-    color: black;
+    color: rgb(255, 255, 255);
     font-family: sans-serif;
     font-weight: 1000;
 }
+
+i :hover {
+    color: red;
+    font-weight: bold;
+    visibility: 1;
+}
+
+body {  
+    background-color: #000;    
+    margin: 0;  
+    overflow: hidden;  
+    background-repeat: no-repeat;  
+   }  
 
 /*https://paletasdecolores.com/tag/azul-grisaceo/*/
