@@ -1,9 +1,8 @@
 
 ::selection {
     background-color: #ff7e67;
-    color: white;
-    cursor:
-      url(Fuji.png) 4 12,
+    color: white
+
 }
 
 
@@ -166,3 +165,9 @@ h1, h3 {
     background: #d3d3d3;
     cursor: not-allowed;
 }
+
+#accept-terms ::target-text {
+    background-color: rebeccapurple;
+    color: white;
+  }
+  

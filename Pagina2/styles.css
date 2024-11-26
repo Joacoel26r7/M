@@ -4,9 +4,16 @@ html {
     background-size: 1300px;
     background-position: center center;
     background-attachment:scroll;
-
+    
 }
 
+body {  
+    background-color: #000000;    
+    margin: 0;  
+    overflow: hidden;  
+    background-repeat: no-repeat;  
+   }
+     
 h1 {
     text-align: center;
     margin: 0;
@@ -42,11 +49,6 @@ i :hover {
     font-style: oblique;
 }
 
-body {  
-    background-color: #000000;    
-    margin: 0;  
-    overflow: hidden;  
-    background-repeat: no-repeat;  
-   }  
+
 
 /*https://paletasdecolores.com/tag/azul-grisaceo/*/
