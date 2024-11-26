@@ -1,6 +1,7 @@
 const checkbox = document.getElementById("accept-terms");
 const button = document.getElementById("continue-btn");
 const dedicatoriaContainer = document.getElementById("dedicatoria-container");
+const errorMessage = document.getElementById("error");
 
 // Habilitar botón al aceptar términos
 checkbox.addEventListener("change", function () {
@@ -8,6 +9,13 @@ checkbox.addEventListener("change", function () {
     button.disabled = !isChecked;
     button.setAttribute("aria-disabled", !isChecked);
     button.classList.toggle("active", isChecked);
+    
+    // Mostrar el mensaje de error si no está marcado
+    if (!isChecked) {
+        errorMessage.style.display = "inline"; // Muestra el error si no está marcado
+    } else {
+        errorMessage.style.display = "none"; // Oculta el error si está marcado
+    }
 });
 
 // Redirigir al "index.html" al hacer clic en el botón
@@ -18,7 +26,7 @@ button.addEventListener("click", function () {
             window.location.href = "index.html"; // Redirección
         }, 2000); // Espera de 2 segundos para un efecto de carga
     } else {
-        alert("Por favor, acepta los términos y condiciones para continuar.");
+        alert("¿No aceptas mis términos? :(");
     }
 });
 
