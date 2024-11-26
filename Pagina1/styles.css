@@ -1,4 +1,11 @@
 
+::selection {
+    background-color: #ff7e67;
+    color: white;
+    cursor:
+      url(Fuji.png) 4 12,
+}
+
 
 body {
     font-family: 'Georgia', serif;
