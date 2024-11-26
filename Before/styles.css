@@ -6,7 +6,7 @@
 }
 
 
-body {
+body {   
     font-family: 'Georgia', serif;
     background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     color: #333;
@@ -16,8 +16,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    flex-direction:column;        
-    
+    flex-direction:column;   
 }
 
 h1, h3 {
