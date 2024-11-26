@@ -14,7 +14,9 @@ body {
     align-items: center;
     height: 100vh;
     flex-direction: column;   
-}
+    cursor: url('../media/cupcake.cur') 16 16, auto;
+
+}    
 
 h1, h3 {
     text-align: center;

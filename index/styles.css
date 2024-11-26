@@ -1,12 +1,12 @@
+body {
+    background-color: #000000;
+    margin: 0;
+    overflow: hidden;
+    background-repeat: no-repeat;
+
+}
 
 
-body {  
-    background-color: #000000;    
-    margin: 0;  
-    overflow: hidden;  
-    background-repeat: no-repeat; 
-   }
-     
 h1 {
     text-align: center;
     margin: 0;
