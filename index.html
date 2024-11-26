@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Camino Neón del Mouse</title>
+        <title>Aquí comenzamos...</title>
         <style>
             body, html {
                 margin: 0;
@@ -18,7 +18,7 @@
                 width: 15px;
                 height: 15px;
                 border-radius: 50%;
-                background-color: #b5e3f58f; /* Color neón */
+                background-color: #8969d4; /* Color neón */
                 pointer-events: none;
                 animation: glow 0.8s ease-out forwards;
             }
@@ -26,11 +26,11 @@
             /* Efecto neón */
             @keyframes glow {
                 0% {
-                    box-shadow: 0 0 5px #3679a0, 0 0 30px #3679a0, 0 0 20px #3679a0;
+                    box-shadow: 0 0 5px #8969d4, 0 0 30px #8969d4, 0 0 20px #8969d4;
                     transform: scale(0.5);
                 }
                 100% {
-                    box-shadow: 0 0 20px #3679a0, 0 0 40px #3679a0, 0 0 60px #3679a0;
+                    box-shadow: 0 0 20px #8969d4, 0 0 40px #8969d4, 0 0 60px #8969d4;
                     transform: scale(1);
                 }
             }
@@ -45,8 +45,8 @@
                 trail.classList.add("trail");
     
                 // Establecemos la posición del trail en la posición del mouse
-                trail.style.left = `${e.pageX - 10}px`; // Restamos 10px para centrar el círculo
-                trail.style.top = `${e.pageY - 10}px`; // Restamos 10px para centrar el círculo
+                trail.style.left = `${e.pageX - 20}px`; // Restamos 10px para centrar el círculo
+                trail.style.top = `${e.pageY - 20}px`; // Restamos 10px para centrar el círculo
     
                 // Agregamos el trail al documento
                 document.body.appendChild(trail);
