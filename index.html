@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="index/styles.css">
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Camino Neón del Mouse</title>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow: hidden;
+                background-color: #000;
+            }
+    
+            .trail {
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background-color: #b5e3f58f; /* Color neón */
+                pointer-events: none;
+                animation: glow 0.8s ease-out forwards;
+            }
+    
+            /* Efecto neón */
+            @keyframes glow {
+                0% {
+                    box-shadow: 0 0 5px #3679a0, 0 0 30px #3679a0, 0 0 20px #3679a0;
+                    transform: scale(0.5);
+                }
+                100% {
+                    box-shadow: 0 0 20px #3679a0, 0 0 40px #3679a0, 0 0 60px #3679a0;
+                    transform: scale(1);
+                }
+            }
+        </style>
+    </head>
+    <body>
+    
+        <script>
+            // Crea el "camino neón" cuando el mouse se mueve
+            document.addEventListener("mousemove", function (e) {
+                const trail = document.createElement("div");
+                trail.classList.add("trail");
+    
+                // Establecemos la posición del trail en la posición del mouse
+                trail.style.left = `${e.pageX - 10}px`; // Restamos 10px para centrar el círculo
+                trail.style.top = `${e.pageY - 10}px`; // Restamos 10px para centrar el círculo
+    
+                // Agregamos el trail al documento
+                document.body.appendChild(trail);
+    
+                // Remover el trail después de la animación (0.8s)
+                setTimeout(() => {
+                    trail.remove();
+                }, 800);
+            });
+        </script>
+    
+    </body>
+    </html>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index/styles.css">
     <title></title>
 </head>
 <body>
