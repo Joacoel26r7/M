@@ -1,91 +1,38 @@
 <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Aquí comenzamos...</title>
-        <style>
-            body, html {
-                margin: 0;
-                padding: 0;
-                height:100%;
-                overflow: hidden;
-                background-color: #000;
-            }
-    
-            .trail {
-                position: absolute;
-                width: 15px;
-                height: 15px;
-                border-radius: 50%;
-                background-color: #8969d4; /* Color neón */
-                pointer-events: none;
-                animation: glow 0.8s ease-out forwards;
-            }
-    
-            /* Efecto neón */
-            @keyframes glow {
-                0% {
-                    box-shadow: 0 0 5px #8969d4, 0 0 30px #8969d4, 0 0 20px #8969d4;
-                    transform: scale(0.5);
-                }
-                100% {
-                    box-shadow: 0 0 20px #8969d4, 0 0 40px #8969d4, 0 0 60px #8969d4;
-                    transform: scale(1);
-                }
-            }
-        </style>
-    </head>
-    <body>
-    
-        <script>
-            // Crea el "camino neón" cuando el mouse se mueve
-            document.addEventListener("mousemove", function (e) {
-                const trail = document.createElement("div");
-                trail.classList.add("trail");
-    
-                // Establecemos la posición del trail en la posición del mouse
-                trail.style.left = `${e.pageX - 0}px`; // Restamos 10px para centrar el círculo
-                trail.style.top = `${e.pageY - 0}px`; // Restamos 10px para centrar el círculo
-    
-                // Agregamos el trail al documento
-                document.body.appendChild(trail);
-    
-                // Remover el trail después de la animación (0.8s)
-                setTimeout(() => {
-                    trail.remove();
-                }, 800);
-            });
-        </script>
-    
-    </body>
-    </html>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index/styles.css">
-    <title></title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aquí comenzamos...</title>
+  <link rel="stylesheet" href="index/styles.css">
 </head>
 <body>
-    <h1>Esta es la página principal.</h1> 
-    <h2>Puedes navegar libremente por aquí o ir a las siguientes páginas:</h2> 
-
-    <div>
-        <nav> 
-            <ol>
-                <i><a href="">First Page</a></i>
-                <i><a href="">Second Page</a></i>
-                <i><a href="">Third Page</a></i>
-                <i><a href="">Forth Page</a></i>
-                <i><a href="">Fifth Page</a></i>
-            </ol>
-        </nav>
+  <div class="carousel-container">
+    <div class="carousel">
+      <div class="carousel-item">
+        <a href="takeatrip.html">
+          <img src="media/takeatrip.jpg" alt="Imagen 1">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="pagina2.html">
+          <img src="https://www.rae.es/sites/default/files/styles/wysiwyg_100_/public/2021-07/ramdomtwitter_Mesa%20de%20trabajo%201.png?itok=JfO9YVoD" alt="Imagen 2">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="pagina3.html">
+          <img src="https://www.rae.es/sites/default/files/styles/wysiwyg_100_/public/2021-07/ramdomtwitter_Mesa%20de%20trabajo%201.png?itok=JfO9YVoD" alt="Imagen 3">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="pagina4.html">
+          <img src="https://www.rae.es/sites/default/files/styles/wysiwyg_100_/public/2021-07/ramdomtwitter_Mesa%20de%20trabajo%201.png?itok=JfO9YVoD" alt="Imagen 4">
+        </a>
+      </div>
     </div>
-    
-    <canvas id="canvas" width="1400" height="600" ></canvas>
-    
-    <h1></h1>
+    <button class="carousel-btn prev" id="prevBtn">&#8249;</button>
+    <button class="carousel-btn next" id="nextBtn">&#8250;</button>
+  </div>
+  <script src="index/script.js"></script>
 </body>
-<script src="index/script.js"></script>
 </html>
-

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Take a Trip</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      background: radial-gradient(circle at center, #000428, #004e92);
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Estrellas de fondo */
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 1.5s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+      margin: 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .message {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      animation: slideIn 2s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      background-color: rgba(0, 150, 255, 0.8);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .button:hover {
+      background-color: rgb(95, 84, 197);
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .asteroid {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, #7f8c8d, #95a5a6);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      animation: asteroidMove 5s infinite alternate ease-in-out;
+      transition: transform 0.3s ease;
+    }
+
+    @keyframes asteroidMove {
+      0% {
+        top: 20%;
+        left: 40%;
+        transform: rotate(0deg);
+      }
+      25% {
+        top: 30%;
+        left: 50%;
+        transform: rotate(15deg);
+      }
+      50% {
+        top: 40%;
+        left: 30%;
+        transform: rotate(-15deg);
+      }
+      75% {
+        top: 50%;
+        left: 60%;
+        transform: rotate(15deg);
+      }
+      100% {
+        top: 80%;
+        left: 80%;
+        transform: rotate(0deg);
+      }
+    }
+
+    .spaceship {
+      position: absolute;
+      bottom: 10%;
+      left: -10%;
+      width: 120px;
+      height: 80px;
+      background: url('media/spaceship.png') no-repeat center center;
+      background-size: contain;
+      animation: spaceship 4s ease-out forwards;
+    }
+
+    @keyframes spaceship {
+      0% {
+        transform: translateX(-100vw);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="spaceship"></div> <!-- Imagen de la nave -->
+  
+  <div class="content">
+    <h1>Bienvenida a tu Viaje Espacial</h1>
+    <p class="message">Estás a punto de comenzar un viaje a través de las estrellas, donde cada paso estará iluminado por el amor que te tengo.</p>
+    <button class="button" onclick="window.location.href='takeatrip/trip.html'">Comenzar el Viaje</button>
+  </div>
+
+  <div class="asteroid" id="asteroid"></div> <!-- Asteroide errante -->
+
+  <script>
+    // Detectar clic en el asteroide para ir a la página secreta
+    const asteroid = document.getElementById('asteroid');
+    asteroid.addEventListener('click', function() {
+      alert("¡Has encontrado el secreto! Ahora serás transportado a un lugar muy especial.");
+      window.location.href = 'secreto2.html'; // Página secreta
+    });
+
+    // Generar estrellas en el fondo
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() * 3 + 1; // Tamaño aleatorio
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.top = `${Math.random() * 100}vh`;
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.animationDuration = `${Math.random() * 1 + 1}s`;
+      document.body.appendChild(star);
+    }
+  </script>
+
+</body>
+</html>

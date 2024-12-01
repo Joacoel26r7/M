@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A space trip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    /* Estilo general */
+    ::selection {
+      background-color: rgba(58, 73, 94, 0);
+      color: rgb(168, 22, 168);
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #1a1a2e, #16213e);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+    }
+
+    /* Fondo animado */
+    .space-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('media/space2.gif') no-repeat center center fixed;
+      background-size: cover;
+      animation: drift 60s infinite linear;
+      z-index: 0;
+    }
+
+    @keyframes drift {
+      from { background-position: 0 0; }
+      to { background-position: 200% 200%; }
+    }
+
+    /* Planetas */
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 10s infinite alternate ease-in-out;
+    }
+
+    /* Planetas variados */
+    .planet:nth-child(1) { width: 80px; height: 80px; top: 20%; left: 10%; background: radial-gradient(circle, rgba(255, 200, 100, 0.9), rgba(255, 150, 0, 0.8)); animation-duration: 12s; }
+    .planet:nth-child(2) { width: 100px; height: 100px; top: 50%; right: 20%; background: radial-gradient(circle, rgba(100, 200, 255, 0.8), rgba(0, 100, 255, 0.9)); animation-duration: 15s; }
+    .planet:nth-child(3) { width: 60px; height: 60px; bottom: 10%; left: 40%; background: radial-gradient(circle, rgba(100, 255, 150, 0.8), rgba(0, 255, 100, 0.9)); animation-duration: 18s; }
+    .planet:nth-child(4) { width: 120px; height: 120px; top: 10%; left: 50%; background: radial-gradient(circle, rgba(200, 100, 255, 0.9), rgba(150, 0, 200, 0.8)); animation-duration: 20s; }
+    .planet:nth-child(5) { width: 90px; height: 90px; bottom: 20%; right: 30%; background: radial-gradient(circle, rgba(255, 100, 150, 0.9), rgba(200, 0, 100, 0.8)); animation-duration: 25s; }
+
+    @keyframes float {
+      from { transform: translateY(-20px); }
+      to { transform: translateY(20px); }
+    }
+
+    /* Estrellas */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 1.5s infinite alternate;
+      animation-delay: calc(0.1s * var(--i));
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    /* Nebulosa */
+    .nebula {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 0, 255, 0.3);
+      border-radius: 50%;
+      filter: blur(40px);
+      animation: floatNebula 20s infinite alternate;
+    }
+
+    @keyframes floatNebula {
+      from { transform: translateY(-10px); }
+      to { transform: translateY(10px); }
+    }
+
+    /* Títulos */
+    .title {
+      z-index: 2;
+      font-size: 3rem;
+      font-family: 'Great Vibes', cursive;
+      text-shadow: 0 0 20px white;
+      margin-bottom: 20px;
+      text-align: center;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mensaje interactivo */
+    .message {
+      z-index: 2;
+      font-size: 1.5rem;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      padding: 20px;
+      width: 60%;
+      max-width: 500px;
+      transition: background 0.3s, box-shadow 0.3s;
+      animation: fadeIn 1s forwards;
+    }
+
+    .message:hover {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+    }
+
+    /* Botones contenedores */
+    .button-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px; /* Espacio entre los botones */
+      z-index: 2;
+    }
+
+    /* Botón */
+    .next-button {
+      padding: 15px 30px;
+      background: linear-gradient(45deg, rgba(255, 100, 150, 0.9), rgba(100, 200, 255, 0.9));
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .next-button:hover {
+      background: linear-gradient(45deg, rgba(255, 150, 200, 0.9), rgba(150, 255, 255, 0.9));
+      box-shadow: 0 0 30px white;
+      transform: scale(1.05);
+    }
+
+    /* Galería */
+    .gallery {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .gallery.show {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery img {
+      width: 120px; /* Ajustar el tamaño */
+      height: 120px; /* Ajustar el tamaño */
+      margin: 5px;
+      border-radius: 10px;
+      object-fit: cover; /* Ajustar la imagen sin distorsionar */
+      transition: transform 0.3s;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      cursor: pointer; /* Cambiar el cursor al pasar sobre la imagen */
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Estilo para el mensaje emergente */
+    .popup-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: none; /* Oculto por defecto */
+      z-index: 3;
+      animation: fadeIn 0.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Sección de mensajes personalizados */
+    .custom-message {
+      display: none;
+      z-index: 2;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .custom-message input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .custom-message button {
+      padding: 10px 20px;
+      background: linear-gradient(45deg, rgba(255, 100, 150, 0.9), rgba(100, 200, 255, 0.9));
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .custom-message button:hover {
+      background: linear-gradient(45deg, rgba(255, 150, 200, 0.9), rgba(150, 255, 255, 0.9));
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Mensaje de nebulosa */
+    .nebula-message {
+      position: absolute;
+      z-index: 3;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 5px;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    /* Nebulosa animada */
+    .animated-nebula {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: rgba(102, 237, 183, 0.5);
+      border-radius: 50%;
+      filter: blur(20px);
+      animation: expand 3s forwards;
+    }
+
+    @keyframes expand {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    /* Lluvia de estrellas */
+    .falling-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.9;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fondo -->
+  <div class="space-background"></div>
+
+  <!-- Estrellas y nebulosas -->
+  <div class="nebula" style="top: 10%; left: 20%;"></div>
+  <div class="nebula" style="top: 50%; right: 10%;"></div>
+  <div class="nebula" style="bottom: 30%; left: 30%;"></div>
+
+  <!-- Estrellas -->
+  <script>
+    const createStars = (count) => {
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.top = `${Math.random() * 100}vh`;
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.setProperty('--i', i); // Para el retraso de parpadeo
+        document.body.appendChild(star);
+      }
+    };
+    createStars(200);
+
+    // Lluvia de estrellas
+    const createFallingStars = (count) => {
+      for (let i = 0; i < count; i++) {
+        const fallingStar = document.createElement('div');
+        fallingStar.className = 'falling-star';
+        fallingStar.style.left = `${Math.random() * 100}vw`;
+        fallingStar.style.animationDuration = `${Math.random() * 3 + 2}s`; // Duración aleatoria
+        fallingStar.style.animationDelay = `${Math.random() * 5}s`; // Retraso aleatorio
+        document.body.appendChild(fallingStar);
+      }
+    };
+    createFallingStars(50);
+  </script>
+
+  <!-- Planetas -->
+  <div class="planet"></div>
+  <div class="planet"></div>
+  <div class="planet"></div>
+  <div class="planet"></div>
+  <div class="planet"></div>
+
+  <!-- Títulos y mensajes -->
+  <h1 class="title">Mi Universo Contigo</h1>
+  <div class="message">Eres mi refugio en el caos, el abrazo que siempre anhelo.</div>
+
+  <!-- Contenedor de botones -->
+  <div class="button-container">
+    <button class="next-button">Ver Galería</button>
+    <button class="next-button" id="nebulaButton">Genera una Nebulosa</button>
+  </div>
+
+  <!-- Galería -->
+  <div class="gallery" id="gallery">
+    <img src="../media/im3.jpg" alt="Imagen 4" data-message="Nuestra primera foto juntos 😺">
+    <img src="../media/im4.jpg" alt="Imagen 5" data-message="Nuestra segunda foto juntos ❤️">
+    <img src="../media/im5.jpg" alt="Falta la de hoy..." data-message="Y hoy, luego de 2 años juntos: nuestra foto fuera de la cuarentena, sin barbijo. Ojalá y la primera de muchas 💞">
+    <img src="../media/im2.jpg" alt="Imagen 2" data-message="Nuestra tercera foto juntos 💕">
+    <img src="../media/im1.jpg" alt="Imagen 1" data-message="Nuestra cuarta foto juntos ❣️">
+  </div>
+  
+  <!-- Mensaje emergente -->
+  <div class="popup-message" id="popupMessage"></div>
+
+
+  <!-- Sección de mensajes personalizados -->
+  <div class="custom-message" id="messages">
+    <h2>Deja un Mensaje de Amor</h2>
+    <input type="text" id="user-message" placeholder="Tu mensaje aquí" required>
+    <button id="send-message">Enviar Mensaje</button>
+    <div id="display-message" style="margin-top: 20px;"></div>
+  </div>
+
+  <!-- Mensajes de nebulosas -->
+  <script>
+    const messages = [
+      "Eres la persona con quien siempre anhelo estar",
+      "Eres la única persona que amo y amaré",
+      "Cada momento contigo es lo que más disfruto y quiero.",
+      "Eres a quien quiero para toda la vida, junto a mí.",
+      "Agradezco mucho tenerte en mi vida, sos lo mejor de ella."
+    ];
+
+    const button = document.querySelector('.next-button');
+    const gallery = document.getElementById('gallery');
+    const customMessageSection = document.getElementById('messages');
+    const userMessageInput = document.getElementById('user-message');
+    const displayMessage = document.getElementById('display-message');
+    const popupMessage = document.getElementById('popupMessage');
+
+    button.addEventListener('click', () => {
+      gallery.classList.toggle('show');
+      button.textContent = button.textContent === 'Ver Galería' ? 'Ocultar Galería' : 'Ver Galería';
+      const audio = new Audio('media/click-sound.mp3'); // Asegúrate de tener este archivo de sonido
+      audio.play();
+    });
+
+    // Enviar mensaje personalizado
+    document.getElementById('send-message').addEventListener('click', () => {
+      const message = userMessageInput.value;
+      if (message) {
+        displayMessage.innerHTML += `<p>${message}</p>`;
+        userMessageInput.value = '';
+      }
+    });
+// Mostrar mensaje emergente al clicar en una imagen
+const images = document.querySelectorAll('.gallery img');
+images.forEach((img) => {
+  img.addEventListener('click', () => {
+    const message = img.getAttribute('data-message'); // Obtener el mensaje del atributo data-message
+    popupMessage.textContent = message; // Mostrar el mensaje personalizado
+    popupMessage.style.display = 'block';
+    setTimeout(() => {
+      popupMessage.style.display = 'none';
+    }, 4000); // Ocultar después de 2 segundos
+  });
+});
+
+    // Generar nebulosa
+    const generateNebula = () => {
+      const nebula = document.createElement('div');
+      nebula.className = 'animated-nebula';
+      nebula.style.left = `${Math.random() * 100}vw`;
+      nebula.style.top = `${Math.random() * 100}vh`;
+      document.body.appendChild(nebula);
+
+      // Mostrar mensaje después de que la nebulosa desaparezca
+      setTimeout(() => {
+        const message = messages[Math.floor(Math.random() * messages.length)];
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'nebula-message';
+        messageDiv.innerText = message;
+        messageDiv.style.left = `${nebula.offsetLeft + 50}px`;
+        messageDiv.style.top = `${nebula.offsetTop + 50}px`;
+        document.body.appendChild(messageDiv);
+
+        // Desaparecer el mensaje
+        setTimeout(() => {
+          messageDiv.style.animation = 'fadeOut 1s forwards';
+          setTimeout(() => messageDiv.remove(), 1000);
+        }, 2000); // Mostrar mensaje por 2 segundos
+      }, 3000); // Duración de la nebulosa
+
+      setTimeout(() => nebula.remove(), 3000); // Eliminar la nebulosa después de 3 segundos
+    };
+
+    // Botón para generar nebulosas
+    const nebulaButton = document.getElementById('nebulaButton');
+    nebulaButton.addEventListener('click', generateNebula);
+
+    // Generar nebulosas al cargar la página
+    window.onload = () => {
+      createStars(200);
+      createFallingStars(50);
+    };
+  </script>
+</body>
+</html>
