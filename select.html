@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aquí comenzamos...</title>
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url(https://i.pinimg.com/originals/36/22/57/362257cf23c567b6465178b63dbe74e0.gif);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px; /* Ancho máximo del carrusel */
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%; /* Cada item ocupa el 100% del contenedor */
+    }
+
+    .carousel-item img {
+      width: 100%; /* Las imágenes se ajustan al ancho del contenedor */
+      height: auto;
+      display: block;
+      opacity: 0.7;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(243, 241, 241, 0.288);
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(255, 116, 192, 0.719);
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    /* Responsividad */
+    @media (max-width: 600px) {
+      .carousel-btn {
+        padding: 8px;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel-container">
+    <div class="carousel">
+      <div class="carousel-item">
+        <a href="takeatrip.html">
+          <img src="media/takeatrip.jpg" alt="Imagen 1">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="Ourfuture.html">
+          <img src="https://img.freepik.com/fotos-premium/dos-gatos-blanco-negro-enamorados-ia-generativa_351987-658.jpg?w=900" alt="Imagen 2">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="Justyou.html">
+          <img src="https://5.imimg.com/data5/ANDROID/Default/2023/4/298173859/GY/IC/EJ/90665230/product-1000x1000.jpg" alt="Imagen 3">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="Youhavealetter.html">
+          <img src="https://eeut-site-backend.s3.eu-west-3.amazonaws.com/styles/653_432/s3/2023-12/unida-matrimonio-carta-de-dios.jpg?itok=ibPu--kk" alt="Imagen 4">
+        </a>
+      </div>
+    </div>
+    <button class="carousel-btn prev" id="prevBtn">&#8249;</button>
+    <button class="carousel-btn next" id="nextBtn">&#8250;</button>
+  </div>
+  <script>
+    const carousel = document.querySelector('.carousel');
+    const items = document.querySelectorAll('.carousel-item');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+
+    // Función para actualizar la posición del carrusel
+    function updateCarousel() {
+      const offset = -currentIndex * 100;
+      carousel.style.transform = `translateX(${offset}%)`;
+    }
+
+    // Botón "Siguiente"
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    });
+
+    // Botón "Anterior"
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
+    });
+  </script>
+</body>
+</html>

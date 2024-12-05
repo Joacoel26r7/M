@@ -1,137 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aquí comenzamos...</title>
-  <style>
-    /* Estilos generales */
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-image: url(https://i.pinimg.com/originals/36/22/57/362257cf23c567b6465178b63dbe74e0.gif);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-    }
-
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 800px; /* Ancho máximo del carrusel */
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .carousel {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .carousel-item {
-      min-width: 100%; /* Cada item ocupa el 100% del contenedor */
-    }
-
-    .carousel-item img {
-      width: 100%; /* Las imágenes se ajustan al ancho del contenedor */
-      height: auto;
-      display: block;
-      opacity: 0.7;
-    }
-
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(243, 241, 241, 0.288);
-      color: #000;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .carousel-btn:hover {
-      background: rgba(255, 116, 192, 0.719);
-    }
-
-    .prev {
-      left: 10px;
-    }
-
-    .next {
-      right: 10px;
-    }
-
-    /* Responsividad */
-    @media (max-width: 600px) {
-      .carousel-btn {
-        padding: 8px;
-        font-size: 18px;
+    <link rel="stylesheet" href="Before/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antes que nada...</title>
+    <style>
+      /* Estilos generales */
+      ::selection {
+          background-color: #ff7e67;
+          color: white;
       }
-    }
-  </style>
+
+      body {   
+          font-family: 'Georgia', serif;
+          background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+          color: #333;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          cursor: url('https://www.crushpixel.com/big-static19/preview4/cupcake-icon-cartoon-flat-style-3630528.jpg') 16 16, auto;
+      }    
+
+      h1, h3 {
+          text-align: center;
+      }
+
+      /* Dedicatoria */
+      .dedicatoria {
+          margin: 20px;
+          max-width: 90%; /* Ajustado para ser responsive */
+          background: #fffaf0;
+          border-radius: 15px;
+          padding: 30px;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+          border: 2px solid #ffd700;
+          text-align: center;
+      }
+
+      #name {
+          font-size: 24px;
+          font-style: italic;
+          font-weight: bold;
+          color: #ff7e67;
+          margin-bottom: 20px;
+      }
+
+      #dedicatoria {
+          font-family: 'Cursive', 'Georgia', serif;
+          font-size: 18px;
+          line-height: 1.8;
+          font-weight: normal;
+          color: #444;
+          margin-bottom: 20px;
+      }
+
+      #name2 {
+          font-size: 20px;
+          font-style: italic;
+          font-weight: bold;
+          color: #6b5b95;
+          text-align: right;
+          margin-top: 20px;
+      }
+
+      #dedicatoria-container {
+          cursor: pointer;
+          transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+
+      #dedicatoria-container:hover {
+          transform: scale(1.02);
+          background-color: rgba(255, 235, 205, 0.5);
+      }
+
+      /* Condiciones */
+      .conditions {
+          margin: 20px auto;
+          max-width: 90%; /* Ajustado para ser responsive */
+          background: #fffaf0;
+          border: 2px solid #ffd700;
+          border-radius: 15px;
+          padding: 30px;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+          color: #444;
+          font-family: 'Georgia', serif;
+          line-height: 1.8;
+      }
+
+      .conditions h2 {
+          font-size: 24px;
+          font-weight: bold;
+          text-align: center;
+          color: #6b5b95;
+          margin-bottom: 20px;
+          text-transform: uppercase;
+      }
+
+      .conditions p {
+          font-size: 18px;
+          color: #333;
+          margin-bottom: 20px;
+      }
+
+      .conditions ol {
+          margin: 20px 0;
+          padding-left: 30px;
+      }
+
+      .conditions ol li {
+          margin-bottom: 15px;
+          font-size: 16px;
+          color: #555;
+      }
+
+      .conditions ol li b {
+          color: #ff7e67;
+          font-weight: bold;
+      }
+
+      .conditions label {
+          display: flex;
+          align-items: center;
+          font-size: 16px;
+          margin-top: 20px;
+          color: #444;
+      }
+
+      .conditions input[type="checkbox"] {
+          margin-right: 10px;
+      }
+
+      /* Botón */
+      .btn {
+          display: block;
+          margin: 20px auto;
+          padding: 12px 24px;
+          font-size: 18px;
+          background: #d3d3d3;
+          color: #666;
+          border: none;
+          border-radius: 8px;
+          text-align: center;
+          cursor: not-allowed;
+          transition: all 0.3s ease;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn.active {
+          cursor: pointer;
+          background: #ff7e67;
+          color: white;
+          box-shadow: 0 8px 20px rgba(255, 126, 103, 0.5);
+      }
+
+      .btn.active:hover {
+          background: #ff5637;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgba(255, 86, 55, 0.5);
+      }
+
+      /* Hover en botón deshabilitado */
+      .btn:disabled:hover {
+          background: #d3d3d3;
+          cursor: not-allowed;
+      }
+
+      /* Estilo para el mensaje de error */
+      .error-message {
+          color: red;
+          font-size: 14px;
+          display: none; /* Inicialmente está oculto */
+          margin-left: 10px;
+      }
+
+      /* Responsividad */
+      @media (max-width: 600px) {
+          .btn {
+              padding: 10px 20px;
+              font-size: 16px;
+          }
+
+          h1, h2, h3 {
+              font-size: 1.5em; /* Ajustar tamaño de fuente en pantallas pequeñas */
+          }
+
+          .dedicatoria, .conditions {
+              padding: 20px; /* Reducir padding en pantallas pequeñas */
+          }
+      }
+    </style>
 </head>
 <body>
-  <div class="carousel-container">
-    <div class="carousel">
-      <div class="carousel-item">
-        <a href="takeatrip.html">
-          <img src="media/takeatrip.jpg" alt="Imagen 1">
-        </a>
-      </div>
-      <div class="carousel-item">
-        <a href="Ourfuture.html">
-          <img src="https://img.freepik.com/fotos-premium/dos-gatos-blanco-negro-enamorados-ia-generativa_351987-658.jpg?w=900" alt="Imagen 2">
-        </a>
-      </div>
-      <div class="carousel-item">
-        <a href="Justyou.html">
-          <img src="https://5.imimg.com/data5/ANDROID/Default/2023/4/298173859/GY/IC/EJ/90665230/product-1000x1000.jpg" alt="Imagen 3">
-        </a>
-      </div>
-      <div class="carousel-item">
-        <a href="Youhavealetter.html">
-          <img src="https://eeut-site-backend.s3.eu-west-3.amazonaws.com/styles/653_432/s3/2023-12/unida-matrimonio-carta-de-dios.jpg?itok=ibPu--kk" alt="Imagen 4">
-        </a>
-      </div>
+    <h1>La razón de esta página</h1>
+    <div class="dedicatoria" id="dedicatoria-container">
+        <h3 id="name">Marianela</h3>
+        <p id="dedicatoria">
+            La persona que me completa. Esta es una pequeña muestra de mi agradecimiento por todo lo que haces y por ser vos, la única persona que amo. Significas todo para mí.
+        </p>
+        <h3 id="name2">--Joaquín Riedel--</h3>
     </div>
-    <button class="carousel-btn prev" id="prevBtn">&#8249;</button>
-    <button class="carousel-btn next" id="nextBtn">&#8250;</button>
-  </div>
-  <script>
-    const carousel = document.querySelector('.carousel');
-    const items = document.querySelectorAll('.carousel-item');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    
+    <div class="conditions">
+        <h2>Condiciones Políticas para Acceder a Esta Página</h2>
+        <p>
+            ¡Atención! Antes de continuar y descubrir lo que esta página tiene preparado, debes aceptar las siguientes condiciones de amor y aprecio incondicional. Estas reglas no son negociables (aunque sabemos que no querrías negociar porque son adorables). ❤️
+        </p>
+        <ol>
+            <li><b>Apreciación Absoluta:</b> Al entrar, reconoces oficialmente que esta página fue hecha con todo el amor y dedicación de Joaquín. Cada línea de código, cada palabra, y hasta el más mínimo detalle está aquí para recordarte lo especial que eres.</li>
+            <li><b>Compromiso con la Sonrisa:</b> Está científicamente comprobado que este contenido provoca sonrisas, así que te comprometes a disfrutar de este regalo y a dejar que el amor que transmite ilumine tu día. Si no sonríes, puede ser que necesites leerlo otra vez.</li>
+            <li><b>Cero Críticas al Diseño (Con Amor):</b> Este sitio no es un diseño digno de Silicon Valley, ¡pero eso no importa! Es una obra maestra hecha con el corazón. Así que, por favor, no critiques si algo no está centrado o si los colores parecen de los años 90. Recuerda: aquí, la perfección está en la intención.</li>
+            <li><b>Amor Activo:</b> Después de recorrer esta página, es obligatorio demostrar tu aprecio con un abrazo, un beso, o un "¡te amo mucho, Joaquín!" (o todas las anteriores, si te animas). ¡Las muestras de afecto son bienvenidas en cualquier formato creativo!</li>
+            <li><b>Uso Exclusivo:</b> Esta página es única y exclusiva para Marianela. Si no eres Marianela, por favor, cierra esta pestaña inmediatamente y busca algo más que hacer.</li>
+            <li><b>Aceptación de un Futuro Lleno de Amor:</b> Al aceptar estas condiciones, declaras que estás dispuesta a recibir más gestos lindos como este en el futuro, porque Joaquín no se detendrá aquí. Prepárate para sorpresas, páginas, cartas, y todo lo que venga con la misma dedicación.</li>
+            <li><b>El Botón Mágico:</b> Solo puedes presionar el botón de "Continuar" si estás completamente preparada para recibir una avalancha de amor, ternura, y pequeños detalles románticos que llenarán tu corazón.</li>
+        </ol>
+        <p>
+            Nota Final:<br>
+            Aceptar estas condiciones es un acto simbólico de confianza, cariño, y felicidad mutua. Presionar el botón significa que estás lista para seguir construyendo un mundo juntos, lleno de sonrisas, momentos especiales, y una conexión única.
+        </p>
+        <p><b>¿Estás lista? Entonces... toca el botón.</b></p>
+        <label>
+            <input type="checkbox" id="accept-terms"> Acepto los términos y condiciones
+            <span id="error" class="error-message">¿No aceptas mis términos? 🙁</span>
+        </label>
+        <button id="continue-btn" class="btn" aria-disabled="true" disabled>Continuar</button>
+    </div>
 
-    let currentIndex = 0;
+    <script src="Before/scripts.js"></script>
+    <script>
+        const checkbox = document.getElementById("accept-terms");
+        const button = document.getElementById("continue-btn");
+        const dedicatoriaContainer = document.getElementById("dedicatoria-container");
+        const errorMessage = document.getElementById("error");
 
-    // Función para actualizar la posición del carrusel
-    function updateCarousel() {
-      const offset = -currentIndex * 100;
-      carousel.style.transform = `translateX(${offset}%)`;
-    }
+        // Habilitar botón al aceptar términos
+        checkbox.addEventListener("change", function () {
+            const isChecked = this.checked;
+            button.disabled = !isChecked;
+            button.setAttribute("aria-disabled", !isChecked);
+            button.classList.toggle("active", isChecked);
+            
+            // Mostrar el mensaje de error si no está marcado
+            if (!isChecked) {
+                errorMessage.style.display = "inline"; // Muestra el error si no está marcado
+            } else {
+                errorMessage.style.display = "none"; // Oculta el error si está marcado
+            }
+        });
 
-    // Botón "Siguiente"
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % items.length;
-      updateCarousel();
-    });
+        // Redirigir al "index.html" al hacer clic en el botón
+        button.addEventListener("click", function () {
+            if (checkbox.checked) {
+                button.textContent = "Cargando...";
+                setTimeout(() => {
+                    window.location.href = "index.html"; // Redirección
+                }, 2000); // Espera de 2 segundos para un efecto de carga
+            } else {
+                alert("¿No aceptas mis términos? :(");
+            }
+        });
 
-    // Botón "Anterior"
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + items.length) % items.length;
-      updateCarousel();
-    });
-  </script>
+        // Redirigir al secreto al hacer clic en la dedicatoria
+        dedicatoriaContainer.addEventListener("click", function() {
+            alert("¡Sorpresa! Aquí hay un secreto especial.");
+        });
+    </script>
 </body>
 </html>
