@@ -236,6 +236,11 @@
             errorMessage.style.display = isChecked ? "none" : "inline"; // Muestra u oculta el error
         });
 
+        // Redirigir al "secreto.html" al hacer clic en la dedicatoria
+        dedicatoriaContainer.addEventListener("click", function () {
+            window.location.href = "secreto.html"; // Redirección a secreto.html
+        });
+
         // Redirigir al "index.html" al hacer clic en el botón
         button.addEventListener("click", function () {
             if (checkbox.checked) {
