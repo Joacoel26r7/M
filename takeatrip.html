@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comencemos 🚀</title>
   <style>
+    ::selection {
+      user-select: none;
+    }
     body {
       margin: 0;
       overflow: hidden;
@@ -111,7 +114,6 @@
       100% {
         top: 80%;
         left: 80%;
-        transform: rotate(0deg);
       }
     }
 
@@ -132,6 +134,33 @@
       }
       100% {
         transform: translateX(0);
+      }
+    }
+
+    /* Responsividad para pantallas pequeñas */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem; /* Tamaño de fuente más pequeño */
+      }
+
+      .message {
+        font-size: 1.2rem; /* Tamaño de fuente más pequeño */
+        margin-top: 15px;
+      }
+
+      .button {
+        padding: 10px 20px; /* Tamaño de botón más pequeño */
+        font-size: 1rem; /* Tamaño de fuente más pequeño */
+      }
+
+      .spaceship {
+        width: 80px; /* Ajustar el tamaño de la nave */
+        height: 50px; /* Ajustar el tamaño de la nave */
+      }
+
+      .asteroid {
+        width: 40px; /* Ajustar el tamaño del asteroide */
+        height: 40px; /* Ajustar el tamaño del asteroide */
       }
     }
   </style>
@@ -165,10 +194,8 @@
       star.style.height = `${size}px`;
       star.style.top = `${Math.random() * 100}vh`;
       star.style.left = `${Math.random() * 100}vw`;
-      star.style.animationDuration = `${Math.random() * 1 + 1}s`;
       document.body.appendChild(star);
     }
   </script>
-
 </body>
 </html>

@@ -5,6 +5,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antes que nada...</title>
+    <style>
+      /* Estilos generales */
+      ::selection {
+          background-color: #ff7e67;
+          color: white;
+      }
+
+      body {   
+          font-family: 'Georgia', serif;
+          background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+          color: #333;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          cursor: url('https://www.crushpixel.com/big-static19/preview4/cupcake-icon-cartoon-flat-style-3630528.jpg') 16 16, auto;
+      }    
+
+      h1, h3 {
+          text-align: center;
+      }
+
+      /* Dedicatoria */
+      .dedicatoria {
+          margin: 20px;
+          max-width: 90%; /* Ajustado para ser responsive */
+          background: #fffaf0;
+          border-radius: 15px;
+          padding: 30px;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+          border: 2px solid #ffd700;
+          text-align: center;
+      }
+
+      #name {
+          font-size: 24px;
+          font-style: italic;
+          font-weight: bold;
+          color: #ff7e67;
+          margin-bottom: 20px;
+      }
+
+      #dedicatoria {
+          font-family: 'Cursive', 'Georgia', serif;
+          font-size: 18px;
+          line-height: 1.8;
+          font-weight: normal;
+          color: #444;
+          margin-bottom: 20px;
+      }
+
+      #name2 {
+          font-size: 20px;
+          font-style: italic;
+          font-weight: bold;
+          color: #6b5b95;
+          text-align: right;
+          margin-top: 20px;
+      }
+
+      #dedicatoria-container {
+          cursor: pointer;
+          transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+
+      #dedicatoria-container:hover {
+          transform: scale(1.02);
+          background-color: rgba(255, 235, 205, 0.5);
+      }
+
+      /* Condiciones */
+      .conditions {
+          margin: 20px auto;
+          max-width: 90%; /* Ajustado para ser responsive */
+          background: #fffaf0;
+          border: 2px solid #ffd700;
+          border-radius: 15px;
+          padding: 30px;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+          color: #444;
+          font-family: 'Georgia', serif;
+          line-height: 1.8;
+      }
+
+      .conditions h2 {
+          font-size: 24px;
+          font-weight: bold;
+          text-align: center;
+          color: #6b5b95;
+          margin-bottom: 20px;
+          text-transform: uppercase;
+      }
+
+      .conditions p {
+          font-size: 18px;
+          color: #333;
+          margin-bottom: 20px;
+      }
+
+      .conditions ol {
+          margin: 20px 0;
+          padding-left: 30px;
+      }
+
+      .conditions ol li {
+          margin-bottom: 15px;
+          font-size: 16px;
+          color: #555;
+      }
+
+      .conditions ol li b {
+          color: #ff7e67;
+          font-weight: bold;
+      }
+
+      .conditions label {
+          display: flex;
+          align-items: center;
+          font-size: 16px;
+          margin-top: 20px;
+          color: #444;
+      }
+
+      .conditions input[type="checkbox"] {
+          margin-right: 10px;
+      }
+
+      /* Botón */
+      .btn {
+          display: block;
+          margin: 20px auto;
+          padding: 12px 24px;
+          font-size: 18px;
+          background: #d3d3d3;
+          color: #666;
+          border: none;
+          border-radius: 8px;
+          text-align: center;
+          cursor: not-allowed;
+          transition: all 0.3s ease;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn.active {
+          cursor: pointer;
+          background: #ff7e67;
+          color: white;
+          box-shadow: 0 8px 20px rgba(255, 126, 103, 0.5);
+      }
+
+      .btn.active:hover {
+          background: #ff5637;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgba(255, 86, 55, 0.5);
+      }
+
+      /* Hover en botón deshabilitado */
+      .btn:disabled:hover {
+          background: #d3d3d3;
+          cursor: not-allowed;
+      }
+
+      /* Estilo para el mensaje de error */
+      .error-message {
+          color: red;
+          font-size: 14px;
+          display: none; /* Inicialmente está oculto */
+          margin-left: 10px;
+      }
+
+      /* Responsividad */
+      @media (max-width: 600px) {
+          .btn {
+              padding: 10px 20px;
+              font-size: 16px;
+          }
+
+          h1, h2, h3 {
+              font-size: 1.5em; /* Ajustar tamaño de fuente en pantallas pequeñas */
+          }
+
+          .dedicatoria, .conditions {
+              padding: 20px; /* Reducir padding en pantallas pequeñas */
+          }
+      }
+    </style>
 </head>
 <body>
     <h1>La razón de esta página</h1>
@@ -43,5 +232,43 @@
     </div>
 
     <script src="Before/scripts.js"></script>
+    <script>
+        const checkbox = document.getElementById("accept-terms");
+        const button = document.getElementById("continue-btn");
+        const dedicatoriaContainer = document.getElementById("dedicatoria-container");
+        const errorMessage = document.getElementById("error");
+
+        // Habilitar botón al aceptar términos
+        checkbox.addEventListener("change", function () {
+            const isChecked = this.checked;
+            button.disabled = !isChecked;
+            button.setAttribute("aria-disabled", !isChecked);
+            button.classList.toggle("active", isChecked);
+            
+            // Mostrar el mensaje de error si no está marcado
+            if (!isChecked) {
+                errorMessage.style.display = "inline"; // Muestra el error si no está marcado
+            } else {
+                errorMessage.style.display = "none"; // Oculta el error si está marcado
+            }
+        });
+
+        // Redirigir al "index.html" al hacer clic en el botón
+        button.addEventListener("click", function () {
+            if (checkbox.checked) {
+                button.textContent = "Cargando...";
+                setTimeout(() => {
+                    window.location.href = "index.html"; // Redirección
+                }, 2000); // Espera de 2 segundos para un efecto de carga
+            } else {
+                alert("¿No aceptas mis términos? :(");
+            }
+        });
+
+        // Redirigir al secreto al hacer clic en la dedicatoria
+        dedicatoriaContainer.addEventListener("click", function() {
+            alert("¡Sorpresa! Aquí hay un secreto especial.");
+        });
+    </script>
 </body>
 </html>

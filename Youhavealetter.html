@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You Have a Letter</title>
+  <style>
+    /* Reset del body y mejoría en el layout */
+    ::selection {
+      color: white;
+      background-color: rgb(161, 113, 121);
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Altura de la pantalla completa */
+      width: 100vw;  /* Ancho de la pantalla completa */
+      overflow: hidden; /* Evitar scroll */
+      flex-direction: column;
+      color: #333;
+      text-align: center;
+      background: linear-gradient(45deg, #ff6b6b, #f7d94b, #6bff6b, #6bb3ff);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Estilo del contenedor de la carta */
+    .letter-container {
+      position: relative;
+      width: 90%;
+      height: 80%; /* Altura ajustada para no exceder la pantalla */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    /* Estilo del sobre con mejoras de interactividad */
+    .envelope {
+      background: url('https://cdn-icons-png.flaticon.com/512/2920/2920258.png') no-repeat center center;
+      background-size: contain;
+      width: 180px;
+      height: 140px;
+      cursor: pointer;
+      transition: transform 0.4s ease, filter 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .envelope:hover {
+      transform: scale(1.1);
+      filter: brightness(1.15);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      opacity: 0.9;
+    }
+
+    /* Estilo de la carta, que inicialmente está oculta */
+    .letter {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+      position: relative;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+      font-size: 1em;
+      line-height: 1.6;
+      max-width: 450px;
+      max-height: 90%; /* Limitar la altura de la carta */
+      overflow-y: auto; /* Permitir scroll dentro de la carta si es necesario */
+      margin: 20px auto;
+      color: #333;
+    }
+
+    .letter.visible {
+      width: 100%;
+      height: auto;
+      opacity: 1;
+    }
+
+    .letter h2 {
+      margin-bottom: 20px;
+      color: #8c5c5c;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    .letter p {
+      color: #4b4b4b;
+      margin: 10px 0;
+    }
+
+    /* Mejoras en responsividad */
+    @media (max-width: 480px) {
+      .envelope {
+        width: 160px;
+        height: 120px;
+      }
+
+      .letter {
+        font-size: 14px;
+        padding: 15px;
+      }
+
+      .letter h2 {
+        font-size: 1.4em;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .letter-container {
+        height: 70%; /* Ajustar altura en pantallas medianas */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="letter-container">
+    <div class="envelope" onclick="openLetter()" aria-label="Abrir carta" role="button" tabindex="0"></div>
+    <div class="letter" id="letter">
+      <h2>¡Tienes una carta!</h2>
+      <p>Querida <strong>Marianela</strong>,</p>
+      <p>Como viste en las anteriores páginas y en los Términos y Condiciones, esta página fue hecha para que veas cómo actuaría yo si decido cruzar la línea entre "Tener vergüenza" y "Ser lo más suelto posible".</p>
+      <p>Esta página es una de las principales cosas que te daría si cruzo esa línea y dejo la vergüenza.</p>
+      <p>Yendo por otro lado, como siempre, quería decirte que te amo muchísimo, que sos el amor de mi vida, la mujer que más amo. Y hago esto para demostrártelo. Mostrarte que sos lo más importante para mí y cuánto te amo.</p>
+      <p>Desde que te conozco, fuiste siendo cada vez más especial para mí y te amé cada vez más.</p>
+      <p>Esta es la primera de, si me lo permitís, muchas formas de muestra de lo que vales para mí.</p>
+      <p>Es todo lo que tengo por el momento. Si aceptas esto, verás que trataré de darte muchas formas para demostrarte cuánto te quiero, amo, etc.</p>
+
+      <p><em>-Joaquín Riedel</em></p>
+    </div>
+  </div>
+
+  <script>
+    function openLetter() {
+      const letter = document.getElementById('letter');
+      const envelope = document.querySelector('.envelope');
+
+      envelope.style.transform = "scale(0.8)";
+      envelope.style.transition = "transform 0.2s ease";
+      letter.classList.add('visible');
+    }
+  </script>
+</body>
+</html>

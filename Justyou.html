@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siempre Vos</title>
+  <style>
+    /* Estilo general */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Fondo degradado */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Estilo del teléfono */
+    .phone {
+      width: 90%; /* Ajustar ancho para ser responsive */
+      max-width: 375px; /* Ancho máximo */
+      height: 667px;
+      background: #fff;
+      border-radius: 36px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      border: 5px solid #333;
+    }
+
+    /* Encabezado de la conversación */
+    .header {
+      background-color: #128c7e;
+      color: white;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      border-top-left-radius: 36px;
+      border-top-right-radius: 36px;
+    }
+
+    .header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .header h2 {
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    /* Pantalla del teléfono */
+    .screen {
+      width: 100%;
+      height: calc(100% - 100px); /* Ajustar para el encabezado y el campo de entrada */
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto; /* Permitir desplazamiento vertical */
+      background-image: url('media/snk.jpg'); /* Cambia esto por tu imagen */
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Contenedor de mensajes */
+    .messages {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-grow: 1; /* Permitir que el contenedor de mensajes crezca */
+      overflow-y: auto; /* Permitir desplazamiento en el contenedor de mensajes */
+    }
+
+    /* Mensajes de WhatsApp */
+    .message {
+      max-width: 75%;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 0.95em;
+      line-height: 1.4;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.6s ease-out;
+      position: relative;
+    }
+
+    .received {
+      background: #ffffff;
+      align-self: flex-start;
+    }
+
+    .sent {
+      background: #dcf8c6;
+      align-self: flex-end;
+    }
+
+    /* Timestamp */
+    .timestamp {
+      font-size: 0.7em;
+      color: #999;
+      position: absolute;
+      bottom: -15px;
+      right: 10px;
+    }
+
+    /* Animación de entrada */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Campo de entrada */
+    .input-area {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: #f0f0f0;
+      border-top: 1px solid #ccc;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      margin-right: 10px;
+      font-size: 0.9em;
+    }
+
+    .input-area button {
+      background: #128c7e;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    /* Respuesta final */
+    .response {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 1em;
+      color: #fff;
+      background: #128c7e;
+      padding: 12px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-out, bounce 0.5s ease-out 1s;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .response2 {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 1em;
+      color: #fff;
+      background: #128c7e;
+      padding: 12px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-out, bounce 0.5s ease-out 1s;
+      transition: transform 0.3s ease;
+    }
+
+    .response:active {
+      transform: scale(0.95);
+    }
+
+    .response:hover {
+      background: rgb(64, 215, 139);
+    }
+
+    /* Texto adicional (invisible por defecto) */
+    .hidden-text {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      font-size: 1.2em;
+      color: #333;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+
+    #proposalMessage:hover {
+      background-color: rgb(243, 48, 100);
+    }
+
+    /* Animación de rebote */
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Responsividad */
+    @media (max-width: 600px) {
+      .header h2 {
+        font-size: 1em; /* Tamaño de fuente más pequeño */
+      }
+
+      .input-area input {
+        font-size: 0.8em; /* Tamaño de fuente más pequeño */
+      }
+
+      .input-area button {
+        font-size: 0.8em; /* Tamaño de fuente más pequeño */
+      }
+
+      .response, .response2 {
+        font-size: 0.9em; /* Tamaño de fuente más pequeño */
+      }
+
+      .message {
+        font-size: 0.85em; /* Tamaño de fuente más pequeño */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Teléfono -->
+  <div class="phone">
+    <div class="header">
+      <img src="media/profile.jpg" alt="Perfil"> <!-- Cambia esto por tu imagen de perfil -->
+      <h2>Magdalena 🧁💞</h2>
+    </div>
+    <div class="screen">
+      <div class="messages">
+        <!-- Mensajes recibidos -->
+        <div class="message received">
+          Más te vale ser la única
+          <div class="timestamp">22:06 PM</div>
+        </div>
+        <div class="message received">
+          Ay no
+          <div class="timestamp">22:10 PM</div>
+        </div>
+        <div class="message received">
+          Te juro que me muero si no es así
+          <div class="timestamp">22:10 PM</div>
+        </div>
+
+        <!-- Mensaje enviado -->
+        <div class="message sent">
+          A ver a ver vamo a charla esto
+          <div class="timestamp">22:11 PM</div>
+        </div>
+
+        <!-- Ejemplo de más mensajes -->
+        <div class="message received">
+          No es eso, es pensar que en un futuro podría haber alguien más
+          <div class="timestamp">22:12 PM</div>
+        </div>
+        <div class="message sent">
+          Nop
+          <div class="timestamp">22:12 PM</div>
+        </div>
+        <div class="message sent">
+            You are and will be the only one
+            <div class="timestamp">22:12 PM</div>
+          </div>
+        <div class="message received">
+          😣
+          <div class="timestamp">22:35 PM</div>
+        </div>
+        <div class="message sent">
+            De mi, nunca esperes que este con alguien más
+            <div class="timestamp">22:49 PM</div>
+          </div>
+          <div class="message sent">
+            Hablando re en serio, no me interesa estar con otra persona
+            <div class="timestamp">22:49 PM</div>
+          </div>
+
+        <!-- Texto adicional que aparece al hacer clic -->
+        <div class="response2">
+          Otro día
+      </div>
+      <div class="message received" id="proposalMessage" onclick="toggleProposalText()">
+        Cuando me vas a pedir ser tu esposa? Sigo esperando
+        <div class="timestamp">05:55 AM</div>
+      </div>
+      
+      <!-- Texto adicional que aparece al hacer clic -->
+      <div id="proposalText" class="hidden-text">
+        Ya te di el anillo, mi amor
+      </div>
+      
+      <script>
+        function toggleProposalText() {
+          const proposalText = document.getElementById('proposalText');
+          if (proposalText.style.display === 'block') {
+            proposalText.style.display = 'none';
+          } else {
+            proposalText.style.display = 'block';
+          }
+        }
+      </script>
+      
+      <div class="message sent">
+        Why you would want that? Just to know
+        <div class="timestamp">07:43 AM</div>
+      </div>
+      <div class="message received">
+        Para saber realmente que no me vas a dejar
+        <div class="timestamp">07:47 AM</div>
+      </div>
+      <div class="message sent">
+        I still don't know why do you think that i will leave you 🙁
+        <div class="timestamp">07:54 AM</div>
+      </div>
+      <div class="message received">
+        Soy muy insegura, perdonn
+        <div class="timestamp">08:00 AM</div>
+      </div>
+      <div class="message sent">
+        Naaaaa
+        <div class="timestamp">08:04 AM</div>
+      </div>
+      <div class="message sent">
+        No pidas perdón >:[
+        <div class="timestamp">08:04 AM</div>
+      </div>
+      <div class="message sent">
+        Yo nunca te voy a dejar, ni te dejaré de amar, ni te olvidaré, ni te reemplazaré, ni te lo que x sea que te cause una inseguridad.
+        <div class="timestamp">08:04 AM</div>
+      </div>
+
+      <!-- Respuesta final -->
+      <div class="response" onclick="showHiddenText()">Estos son dos de los primeros momentos en el que decías que pensabas que te dejaría... (Haz click)</div>
+
+      <!-- Texto adicional que aparece al hacer clic -->
+      <div id="hiddenText" class="hidden-text">
+          Sabé que nunca te dejaré. Sos lo mejor que me ha pasado, nunca lo dudes. No dudes que te amo, que te aprecio, que me encantas. Nunca lo hagas. Fíjate que, los anteriores mensajes, son de hace 1 año y medio. Te sigo amando, te sigo queriendo, seguis siendo el amor de mi vida. Nada cambió, en lo que siento, para mal. Sino que se incrementó más y más <br>¿Qué hay de ti?
+      </div>
+    </div>
+  </div>
+  <!-- Campo de entrada -->
+  <div class="input-area">
+    <input type="text" placeholder="Escribe un mensaje...">
+    <button>Enviar</button>
+  </div>
+</div>
+
+<script>
+  
+  function showHiddenText() {
+    const hiddenText = document.getElementById('hiddenText');
+    if (hiddenText.style.display === 'block') {
+      hiddenText.style.display = 'none';
+    } else {
+      hiddenText.style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>

@@ -213,11 +213,6 @@
       animation: fadeIn 0.5s forwards;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     /* Sección de mensajes personalizados */
     .custom-message {
       display: none;
@@ -261,11 +256,6 @@
       animation: fadeIn 1s forwards;
     }
 
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-
     /* Nebulosa animada */
     .animated-nebula {
       position: absolute;
@@ -296,6 +286,32 @@
     @keyframes fall {
       0% { transform: translateY(-100vh); }
       100% { transform: translateY(100vh); }
+    }
+
+    /* Responsividad */
+    @media (max-width: 600px) {
+      .title {
+        font-size: 2.5rem; /* Tamaño de fuente más pequeño */
+      }
+
+      .message {
+        font-size: 1.2rem; /* Tamaño de fuente más pequeño */
+        width: 80%; /* Ajustar ancho */
+      }
+
+      .next-button {
+        font-size: 1rem; /* Tamaño de fuente más pequeño */
+        padding: 10px 20px; /* Ajustar padding */
+      }
+
+      .gallery img {
+        width: 80px; /* Ajustar tamaño de imagen */
+        height: 80px; /* Ajustar tamaño de imagen */
+      }
+
+      .custom-message input {
+        width: 90%; /* Ajustar ancho del input */
+      }
     }
   </style>
 </head>
@@ -365,7 +381,6 @@
   <!-- Mensaje emergente -->
   <div class="popup-message" id="popupMessage"></div>
 
-
   <!-- Sección de mensajes personalizados -->
   <div class="custom-message" id="messages">
     <h2>Deja un Mensaje de Amor</h2>
@@ -406,56 +421,57 @@
         userMessageInput.value = '';
       }
     });
-// Mostrar mensaje emergente al clicar en una imagen
-const images = document.querySelectorAll('.gallery img');
-images.forEach((img) => {
-  img.addEventListener('click', () => {
-    const message = img.getAttribute('data-message'); // Obtener el mensaje del atributo data-message
-    popupMessage.textContent = message; // Mostrar el mensaje personalizado
-    popupMessage.style.display = 'block';
-    setTimeout(() => {
-      popupMessage.style.display = 'none';
-    }, 4000); // Ocultar después de 2 segundos
-  });
-});
 
-    // Generar nebulosa
-    const generateNebula = () => {
-      const nebula = document.createElement('div');
-      nebula.className = 'animated-nebula';
-      nebula.style.left = `${Math.random() * 100}vw`;
-      nebula.style.top = `${Math.random() * 100}vh`;
-      document.body.appendChild(nebula);
+    // Mostrar mensaje emergente al clicar en una imagen
+    const images = document.querySelectorAll('.gallery img');
+    images.forEach((img) => {
+      img.addEventListener('click', () => {
+                  const message = img.getAttribute('data-message'); // Obtener el mensaje del atributo data-message
+          popupMessage.textContent = message; // Mostrar el mensaje personalizado
+          popupMessage.style.display = 'block';
+          setTimeout(() => {
+            popupMessage.style.display = 'none';
+          }, 4000); // Ocultar después de 4 segundos
+        });
+      });
 
-      // Mostrar mensaje después de que la nebulosa desaparezca
-      setTimeout(() => {
-        const message = messages[Math.floor(Math.random() * messages.length)];
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'nebula-message';
-        messageDiv.innerText = message;
-        messageDiv.style.left = `${nebula.offsetLeft + 50}px`;
-        messageDiv.style.top = `${nebula.offsetTop + 50}px`;
-        document.body.appendChild(messageDiv);
+      // Generar nebulosa
+      const generateNebula = () => {
+        const nebula = document.createElement('div');
+        nebula.className = 'animated-nebula';
+        nebula.style.left = `${Math.random() * 100}vw`;
+        nebula.style.top = `${Math.random() * 100}vh`;
+        document.body.appendChild(nebula);
 
-        // Desaparecer el mensaje
+        // Mostrar mensaje después de que la nebulosa desaparezca
         setTimeout(() => {
-          messageDiv.style.animation = 'fadeOut 1s forwards';
-          setTimeout(() => messageDiv.remove(), 1000);
-        }, 2000); // Mostrar mensaje por 2 segundos
-      }, 3000); // Duración de la nebulosa
+          const message = messages[Math.floor(Math.random() * messages.length)];
+          const messageDiv = document.createElement('div');
+          messageDiv.className = 'nebula-message';
+          messageDiv.innerText = message;
+          messageDiv.style.left = `${nebula.offsetLeft + 50}px`;
+          messageDiv.style.top = `${nebula.offsetTop + 50}px`;
+          document.body.appendChild(messageDiv);
 
-      setTimeout(() => nebula.remove(), 3000); // Eliminar la nebulosa después de 3 segundos
-    };
+          // Desaparecer el mensaje
+          setTimeout(() => {
+            messageDiv.style.animation = 'fadeOut 1s forwards';
+            setTimeout(() => messageDiv.remove(), 1000);
+          }, 3500); // Mostrar mensaje por 2 segundos
+        }, 3000); // Duración de la nebulosa
 
-    // Botón para generar nebulosas
-    const nebulaButton = document.getElementById('nebulaButton');
-    nebulaButton.addEventListener('click', generateNebula);
+        setTimeout(() => nebula.remove(), 3000); // Eliminar la nebulosa después de 3 segundos
+      };
 
-    // Generar nebulosas al cargar la página
-    window.onload = () => {
-      createStars(200);
-      createFallingStars(50);
-    };
-  </script>
-</body>
-</html>
+      // Botón para generar nebulosas
+      const nebulaButton = document.getElementById('nebulaButton');
+      nebulaButton.addEventListener('click', generateNebula);
+
+      // Generar nebulosas al cargar la página
+      window.onload = () => {
+        createStars(200);
+        createFallingStars(50);
+      };
+    </script>
+  </body>
+  </html>
