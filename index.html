@@ -31,7 +31,7 @@
       }
 
       /* Dedicatoria */
-      .dedicatoria {
+      .dedicatoria, .conditions {
           margin: 20px;
           max-width: 90%; /* Ajustado para ser responsive */
           background: #fffaf0;
@@ -79,19 +79,6 @@
       }
 
       /* Condiciones */
-      .conditions {
-          margin: 20px auto;
-          max-width: 90%; /* Ajustado para ser responsive */
-          background: #fffaf0;
-          border: 2px solid #ffd700;
-          border-radius: 15px;
-          padding: 30px;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-          color: #444;
-          font-family: 'Georgia', serif;
-          line-height: 1.8;
-      }
-
       .conditions h2 {
           font-size: 24px;
           font-weight: bold;
@@ -246,11 +233,7 @@
             button.classList.toggle("active", isChecked);
             
             // Mostrar el mensaje de error si no está marcado
-            if (!isChecked) {
-                errorMessage.style.display = "inline"; // Muestra el error si no está marcado
-            } else {
-                errorMessage.style.display = "none"; // Oculta el error si está marcado
-            }
+            errorMessage.style.display = isChecked ? "none" : "inline"; // Muestra u oculta el error
         });
 
         // Redirigir al "index.html" al hacer clic en el botón
@@ -263,11 +246,6 @@
             } else {
                 alert("¿No aceptas mis términos? :(");
             }
-        });
-
-        // Redirigir al secreto al hacer clic en la dedicatoria
-        dedicatoriaContainer.addEventListener("click", function() {
-            alert("¡Sorpresa! Aquí hay un secreto especial.");
         });
     </script>
 </body>
